@@ -1,64 +1,56 @@
-import Image from "next/image";
+import Header from "./components/Header";
+import Navigation from "./components/Navigation";
+import ProductCard from "./components/ProductCard";
+import { getMenu } from "@/lib/menu";
+import { SlidersHorizontal } from "lucide-react";
 
-export default function Home() {
+// Manual mapping of images from the HTML mockup to the JSON names for fidelity
+const imageMap: Record<string, string> = {
+  "Café americano": "https://lh3.googleusercontent.com/aida-public/AB6AXuCByQ1HY8AEiVmFXss_QxVGWMgaI7K4b3Poppo4E0lrAiZlSEwcr8SvS5wydyAIDWwzUrIKSr824QqhuKcYXTX-RYapzLgVSFZrjbiP9544xDhGbMhnmmpx7VTQSIhSxX3pLUEypQen8EyYnG-xovTR3VmDLCHvpEbCzYP311tdFeb7fQf7xXBIYwv9Ysc0kBseb8pE5NzZ3iiQFMNTTvmta4an2CK5XGgYAt6XYiKoNQYJ38AxHHvJtqOJMwLpdXTS71s_jsQmUN7v",
+  "Café Espresso doble": "https://lh3.googleusercontent.com/aida-public/AB6AXuAZSogzKXu6lbbZh933j4we0DeKl8YePtpPpMWxvtbN9AJ21EaxQZHM73nXJLIJgaSoumIPR4_nc4KNWajH_SOJqFiZux2lhnE_kRV-A1Wyc9oUPSq4OsbDD4Hkis6ecxOJSmt90MXVYhYBlgflJ140nLyQ2Gq-iPDWPINor6Pr7N9JJupaxGySjoinVLTmKDNxrMAIHN4mET_8sC7098sO3kJ47_ckoJQq3BfWp5ZmUP592hRX6HBae5pN0l3LOywOKbGKLLbSqZ26",
+  "Café del Arca": "https://lh3.googleusercontent.com/aida-public/AB6AXuBScqK1WS8rj7cib0Gkh1qQWuENVXTRzJZ0r8YIeYBQYM5cJbEJh3yHfvGoV0Vp2wer-XGSxhdvYawysXtc5RwwSJQje66KuLXdT_CK9lMqRVbiXvdzgRYKLkE803kOU59LsRlQ_6vIS6UrMzyEavWMWRIVle6GqQjxffbRVKwa1NIxbGMMBNG15aeC_S01C7kYzo3nY0_whWbC2rUS59Ib-W9hS-vD4xN3EH_Rjw8yosWfWix6-pRimXWoXCt16EZLI3dPnddbOaOz",
+  "Capuchino Especial": "https://lh3.googleusercontent.com/aida-public/AB6AXuBScqK1WS8rj7cib0Gkh1qQWuENVXTRzJZ0r8YIeYBQYM5cJbEJh3yHfvGoV0Vp2wer-XGSxhdvYawysXtc5RwwSJQje66KuLXdT_CK9lMqRVbiXvdzgRYKLkE803kOU59LsRlQ_6vIS6UrMzyEavWMWRIVle6GqQjxffbRVKwa1NIxbGMMBNG15aeC_S01C7kYzo3nY0_whWbC2rUS59Ib-W9hS-vD4xN3EH_Rjw8yosWfWix6-pRimXWoXCt16EZLI3dPnddbOaOz",
+  "Capuchino Vainilla": "https://lh3.googleusercontent.com/aida-public/AB6AXuCByQ1HY8AEiVmFXss_QxVGWMgaI7K4b3Poppo4E0lrAiZlSEwcr8SvS5wydyAIDWwzUrIKSr824QqhuKcYXTX-RYapzLgVSFZrjbiP9544xDhGbMhnmmpx7VTQSIhSxX3pLUEypQen8EyYnG-xovTR3VmDLCHvpEbCzYP311tdFeb7fQf7xXBIYwv9Ysc0kBseb8pE5NzZ3iiQFMNTTvmta4an2CK5XGgYAt6XYiKoNQYJ38AxHHvJtqOJMwLpdXTS71s_jsQmUN7v",
+  "Capuchino Baileys": "https://lh3.googleusercontent.com/aida-public/AB6AXuBScqK1WS8rj7cib0Gkh1qQWuENVXTRzJZ0r8YIeYBQYM5cJbEJh3yHfvGoV0Vp2wer-XGSxhdvYawysXtc5RwwSJQje66KuLXdT_CK9lMqRVbiXvdzgRYKLkE803kOU59LsRlQ_6vIS6UrMzyEavWMWRIVle6GqQjxffbRVKwa1NIxbGMMBNG15aeC_S01C7kYzo3nY0_whWbC2rUS59Ib-W9hS-vD4xN3EH_Rjw8yosWfWix6-pRimXWoXCt16EZLI3dPnddbOaOz",
+  "Café con leche": "https://lh3.googleusercontent.com/aida-public/AB6AXuCByQ1HY8AEiVmFXss_QxVGWMgaI7K4b3Poppo4E0lrAiZlSEwcr8SvS5wydyAIDWwzUrIKSr824QqhuKcYXTX-RYapzLgVSFZrjbiP9544xDhGbMhnmmpx7VTQSIhSxX3pLUEypQen8EyYnG-xovTR3VmDLCHvpEbCzYP311tdFeb7fQf7xXBIYwv9Ysc0kBseb8pE5NzZ3iiQFMNTTvmta4an2CK5XGgYAt6XYiKoNQYJ38AxHHvJtqOJMwLpdXTS71s_jsQmUN7v",
+  "Café latte": "https://lh3.googleusercontent.com/aida-public/AB6AXuCByQ1HY8AEiVmFXss_QxVGWMgaI7K4b3Poppo4E0lrAiZlSEwcr8SvS5wydyAIDWwzUrIKSr824QqhuKcYXTX-RYapzLgVSFZrjbiP9544xDhGbMhnmmpx7VTQSIhSxX3pLUEypQen8EyYnG-xovTR3VmDLCHvpEbCzYP311tdFeb7fQf7xXBIYwv9Ysc0kBseb8pE5NzZ3iiQFMNTTvmta4an2CK5XGgYAt6XYiKoNQYJ38AxHHvJtqOJMwLpdXTS71s_jsQmUN7v",
+  "Moca / Mochiatto": "https://lh3.googleusercontent.com/aida-public/AB6AXuAZSogzKXu6lbbZh933j4we0DeKl8YePtpPpMWxvtbN9AJ21EaxQZHM73nXJLIJgaSoumIPR4_nc4KNWajH_SOJqFiZux2lhnE_kRV-A1Wyc9oUPSq4OsbDD4Hkis6ecxOJSmt90MXVYhYBlgflJ140nLyQ2Gq-iPDWPINor6Pr7N9JJupaxGySjoinVLTmKDNxrMAIHN4mET_8sC7098sO3kJ47_ckoJQq3BfWp5ZmUP592hRX6HBae5pN0l3LOywOKbGKLLbSqZ26",
+  "Milo CALIENTE": "https://lh3.googleusercontent.com/aida-public/AB6AXuBScqK1WS8rj7cib0Gkh1qQWuENVXTRzJZ0r8YIeYBQYM5cJbEJh3yHfvGoV0Vp2wer-XGSxhdvYawysXtc5RwwSJQje66KuLXdT_CK9lMqRVbiXvdzgRYKLkE803kOU59LsRlQ_6vIS6UrMzyEavWMWRIVle6GqQjxffbRVKwa1NIxbGMMBNG15aeC_S01C7kYzo3nY0_whWbC2rUS59Ib-W9hS-vD4xN3EH_Rjw8yosWfWix6-pRimXWoXCt16EZLI3dPnddbOaOz"
+};
+
+export default async function Home() {
+  const menuData = await getMenu();
+  const cafeCategory = menuData.categorias.find(c => c.categoria === "BARRA DE CAFÉ");
+
+  if (!cafeCategory) return <div>Cargando...</div>;
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="min-h-screen wood-texture pb-10">
+      <Header />
+      <Navigation />
+
+      <main className="flex flex-col gap-6 px-4 pt-6 max-w-lg mx-auto w-full">
+        <div className="flex items-center justify-between">
+          <h2 className="text-primary dark:text-[#aab895] font-serif text-2xl font-bold">Barra de Café</h2>
+          <div className="flex items-center gap-1 text-secondary text-sm">
+            <span>Filtros</span>
+            <SlidersHorizontal className="w-4 h-4" />
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+
+        <div className="space-y-4">
+          {cafeCategory.productos.map((product, index) => (
+            <ProductCard
+              key={index}
+              product={{
+                ...product,
+                imageUrl: imageMap[product.nombre] || undefined
+              }}
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          ))}
         </div>
+
+        <div className="h-8"></div>
       </main>
     </div>
   );

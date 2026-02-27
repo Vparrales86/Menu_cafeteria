@@ -1,0 +1,222 @@
+{
+  "nombre_restaurante": "EL ARCA DE NOÉ",
+  "subtitulo": "COFFEE & ROASTERS",
+  "eslogan": "CALIDAD DESDE EL ORIGEN",
+  "contacto": {
+    "instagram": "@rcadenoe_colombia",
+    "email": "cafeteria.terrazadenoe@gmail.com",
+    "telefono_pedidos": "+57 3112331548"
+  },
+  "categorias": [
+    {
+      "categoria": "BARRA DE CAFÉ",
+      "productos": [
+        {
+          "nombre": "Café americano",
+          "etiqueta": "POPULAR",
+          "precio": "$3.000",
+          "descripcion": "Cafe americano elaborado con granos de café tamareño tostion Media."
+        },
+        {
+          "nombre": "Café Espresso doble",
+          "etiqueta": "PRIME",
+          "precio": "$4.500",
+          "descripcion": "Cafe Espresso con granos de café tamareño tostion Media."
+        },
+        {
+          "nombre": "Café del Arca",
+          "etiqueta": "ESPECIAL PRIME",
+          "precio": "$5.500",
+          "descripcion": "Café americano con shot de Whisky Jack daniels con sabor canela."
+        },
+        {
+          "nombre": "Capuchino Especial",
+          "precio": "$6.500",
+          "descripcion": "Espresso con leche cremosa y un toque de arte latte."
+        },
+        {
+          "nombre": "Capuchino Vainilla",
+          "precio": "$7.500",
+          "descripcion": "Espresso con leche cremosa y un toque de arte latte con sabor a vainilla."
+        },
+        {
+          "nombre": "Capuchino Baileys",
+          "etiqueta": "ESPECIAL",
+          "precio": "$9.500",
+          "descripcion": "Espresso con leche cremosa y un toque de arte latte con shot de crema de Whisky Baileys."
+        },
+        {
+          "nombre": "Café con leche",
+          "precio": "$4.000",
+          "descripcion": "Espresso doble con leche."
+        },
+        {
+          "nombre": "Café latte",
+          "precio": "$4.000",
+          "descripcion": "Café latte con cubos de hielo, leche cremada."
+        },
+        {
+          "nombre": "Moca / Mochiatto",
+          "precio": "$8.500",
+          "descripcion": "La mezcla perfecta entre chocolate y café."
+        },
+        {
+          "nombre": "Milo CALIENTE",
+          "precio": "$7.000",
+          "descripcion": "Deliciosa tasa de Milo con leche."
+        }
+      ]
+    },
+    {
+      "categoria": "PRODUCTOS FRIOS, GRANIZADOS & FRAPPÉS",
+      "productos": [
+        {
+          "nombre": "Granizado de Maracuyá",
+          "etiqueta": "RECOMENDADO DEL DÍA",
+          "precio": "$10.000",
+          "descripcion": "Granizado de hielo elaborado con 100% de fruta de Maracuyá, acompañado con leche condensada, tajín y melado de Maracuyá."
+        },
+        {
+          "nombre": "Granizado de Maracumango",
+          "etiqueta": "RECOMENDADO DEL DÍA",
+          "precio": "$14.000",
+          "descripcion": "Granizado de hielo elaborado con 100% de fruta de Mango y Maracuyá, acompañado con leche condensada, tajín y trocitos de mango."
+        },
+        {
+          "nombre": "Granizado de Mango",
+          "etiqueta": "RECOMENDADO DEL DÍA",
+          "precio": "$10.000",
+          "descripcion": "Granizado de hielo elaborado con 100% de fruta de Mango, acompañado con leche condensada, tajín y trocitos de mango."
+        },
+        {
+          "nombre": "Granizado de café",
+          "etiqueta": "RECOMENDADO DEL DÍA",
+          "precio": "$10.000",
+          "descripcion": "Granizado de hielo y café, chocolate y leche condensada."
+        },
+        {
+          "nombre": "Granizado de Coco",
+          "precio": "$12.000",
+          "descripcion": "Granizado de hielo, acompañado con trozitos de Coco, leche condensada."
+        },
+        {
+          "nombre": "Granizado de Milo",
+          "precio": "$11.000",
+          "descripcion": "Granizado de hielo, acompañado con milo y leche."
+        },
+        {
+          "nombre": "Frappé de Café",
+          "precio": "$12.000",
+          "descripcion": "Granizado de hielo y Café decorado con dechocolate y crema."
+        },
+        {
+          "nombre": "Frappé de Oreo",
+          "etiqueta": "PRIME",
+          "precio": "$12.000",
+          "descripcion": "Granizado de hielo acompañado con trozos de galleta y crema batida."
+        },
+        {
+          "nombre": "Frappé de Fresa",
+          "etiqueta": "PRIME",
+          "precio": "$12.000",
+          "descripcion": "Granizado de hielo acompañado con trozos de Fresas y crema batida."
+        },
+        {
+          "nombre": "Cítrica de limón en agua",
+          "precio": "$7.000",
+          "descripcion": "Refrescante limonada cítrica con hielo y limón."
+        },
+        {
+          "nombre": "Cítrica de limón en soda o ginger",
+          "etiqueta": "RECOMENDADO DEL DÍA",
+          "precio": "$8.500",
+          "descripcion": "Refrescante limonada cítrica en soda con hielo y limón."
+        },
+        {
+          "nombre": "Limonada Cerezada",
+          "etiqueta": "RECOMENDADO DEL DÍA",
+          "precio": "$9.000",
+          "descripcion": "Refrescante limonada acompañada por hielo y cereza."
+        },
+        {
+          "nombre": "Milo frio",
+          "precio": "$8.000",
+          "descripcion": "Vaso de milo frio refrescante."
+        }
+      ]
+    },
+    {
+      "categoria": "PASTELERIA",
+      "productos": [
+        {
+          "nombre": "Postres de Maracuyá",
+          "etiqueta": "RECOMENDADO DEL DÍA",
+          "precio": "$6.000",
+          "descripcion": "Postres elabordos con 100% extracto de Maracuyá producido en la región."
+        },
+        {
+          "nombre": "Postres de Oreo",
+          "precio": "$6.000",
+          "descripcion": "Postre elaborado con leche y Oreo."
+        },
+        {
+          "nombre": "Gelatina Mosaico",
+          "etiqueta": "ESPECIAL",
+          "precio": "$5.000",
+          "descripcion": "Delicioso vasito de gelatina Mosaico con porción de leche condensada."
+        },
+        {
+          "nombre": "Torta de la Casa",
+          "precio": "$4.500",
+          "descripcion": "Porción de torta de chocolate del Día."
+        }
+      ]
+    },
+    {
+      "categoria": "JUGOS NATURALES",
+      "encabezados": ["FRUTA", "AGUA", "LECHE"],
+      "productos": [
+        {
+          "nombre": "Fresa / Mora / Lulo",
+          "precio_agua": "$7.000",
+          "precio_leche": "$8.500"
+        },
+        {
+          "nombre": "Mango / Maracuyá",
+          "precio_agua": "$7.000",
+          "precio_leche": "$8.500"
+        },
+        {
+          "nombre": "Frutos Rojos",
+          "precio_agua": "$7.000",
+          "precio_leche": "$8.500"
+        }
+      ]
+    },
+    {
+      "categoria": "PARA ACOMPAÑAR",
+      "productos": [
+        {
+          "nombre": "Empanadas de Carne",
+          "precio": "$3.000",
+          "descripcion": "Deliciosas empanadas rellenas de carne y papa al horno."
+        },
+        {
+          "nombre": "Empanadas Pollo",
+          "precio": "$3.000",
+          "descripcion": "Deliciosas empanadas rellenas de pollo y papa al horno.."
+        },
+        {
+          "nombre": "Mantecadas",
+          "precio": "$3.000",
+          "descripcion": "Porción de mantecadas unidas con arequipe."
+        },
+        {
+          "nombre": "Galletas de avena",
+          "precio": "$3.000",
+          "descripcion": "Deliciosas galletas de avenas."
+        }
+      ]
+    }
+  ]
+}
