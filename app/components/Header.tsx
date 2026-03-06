@@ -2,11 +2,11 @@ import Image from "next/image";
 
 export default function Header() {
     return (
-        <header className="relative flex flex-col items-center pt-10 pb-6 px-6 bg-cover bg-center bg-no-repeat before:absolute before:inset-0 before:bg-gradient-to-b before:from-white/80 before:to-white/60 dark:before:from-black/60 dark:before:to-black/40 before:pointer-events-none" style={{ backgroundImage: 'url(/fondo.jpg)' }}>
+        <header className="relative flex flex-col items-center pt-10 pb-6 px-6 bg-cover bg-center bg-no-repeat before:absolute before:inset-0 before:bg-gradient-to-b before:from-white/80 before:to-white/60 dark:before:from-black/60 dark:before:to-black/40 before:pointer-events-none" style={{ backgroundImage: 'url(/Menu_cafeteria/fondo.jpg)' }}>
             <div className="flex flex-col items-center gap-5 relative z-10">
                 <div className="relative w-28 h-28 rounded-full flex items-center justify-center border-[3px] border-primary/20 bg-card-light shadow-soft overflow-hidden">
                     <Image
-                        src="/logo.png"
+                        src="/Menu_cafeteria/logo.png"
                         alt="El Arca de Noé Logo"
                         width={112}
                         height={112}
