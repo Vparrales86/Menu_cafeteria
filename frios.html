@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banner Publicitario - Bebidas Frías Frios.html</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Outfit:wght@400;700;900&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: #f0f0f0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .banner-canvas {
+            width: 700px;
+            height: 1500px;
+            background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.3);
+            border: 4px solid #0056b3;
+        }
+
+        .background-pattern {
+            position: absolute;
+            inset: 0;
+            background-image: url('file:///C:/Users/USUARIO/.gemini/antigravity/brain/9f6c9b73-1e2d-4f9a-8635-476bc3340ed3/vibrant_sunny_background_pattern_1772587266912.png');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .text-outlined {
+            font-family: 'Luckiest Guy', cursive;
+            -webkit-text-stroke: 10px white;
+            paint-order: stroke fill;
+            text-shadow: 4px 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .subtitle-outlined {
+            font-family: 'Luckiest Guy', cursive;
+            -webkit-text-stroke: 6px white;
+            paint-order: stroke fill;
+        }
+
+        .price-bubble {
+            background: #FF6B00;
+            color: white;
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-weight: 900;
+            font-size: 2rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border: 3px solid white;
+            transform: rotate(-5deg);
+        }
+
+        .product-label {
+            background: white;
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-weight: 900;
+            color: #0072ff;
+            text-transform: uppercase;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-delayed {
+            animation: float 5s ease-in-out 1s infinite;
+        }
+
+        .image-collage {
+            border: 4px solid white;
+            border-radius: 40px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+
+<body class="p-4">
+
+    <div class="banner-canvas flex flex-col items-center">
+        <div class="background-pattern"></div>
+
+        <!-- TOP SECTION -->
+        <div class="w-full pt-16 pb-10 px-8 text-center bg-white/20 backdrop-blur-md z-20 border-b-2 border-white/30">
+            <h2 class="subtitle-outlined text-4xl text-orange-500 uppercase italic mb-2 tracking-widest">¡REFRÉSCATE!
+            </h2>
+            <h1 class="text-outlined text-8xl text-blue-600 leading-[0.8] tracking-wider uppercase">Bebidas <br> Frías
+            </h1>
+        </div>
+
+        <!-- MAIN PRODUCT FLOW -->
+        <div class="w-full flex-grow relative z-10 px-8 py-10 flex flex-col gap-12">
+
+            <!-- JUGOS -->
+            <div class="flex items-center gap-4 relative">
+                <div class="w-3/5 floating image-collage h-64">
+                    <img src="Image/Jugos.jpeg" class="h-full w-full object-cover">
+                </div>
+                <div class="w-2/5 flex flex-col items-end gap-6 scale-90 origin-right">
+                    <div class="flex flex-col items-end gap-2">
+                        <span class="price-bubble" style="font-size: 1.7rem; padding: 6px 16px;">$7,000</span>
+                        <span class="product-label text-sm text-right leading-tight px-3 py-2">
+                            JUGOS NATURALES <br> <span class="text-orange-500 font-black">AGUA</span>
+                        </span>
+                    </div>
+                    <div class="flex flex-col items-end gap-2">
+                        <span class="price-bubble"
+                            style="font-size: 1.7rem; padding: 6px 16px; background: #0072ff;">$8,500</span>
+                        <span class="product-label text-sm text-right leading-tight px-3 py-2">
+                            JUGOS NATURALES <br> <span class="text-blue-500 font-black">EN LECHE</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FRAPPES -->
+            <div class="flex items-center gap-6 relative flex-row-reverse">
+                <div class="w-1/2 floating-delayed grid grid-cols-2 gap-2 h-48">
+                    <div class="image-collage h-full">
+                        <img src="Image/Frape_fresa.jpg" class="h-full w-full object-cover" alt="Frappé Fresa">
+                    </div>
+                    <div class="image-collage h-full">
+                        <img src="Image/Frappe_oreo.jpg" class="h-full w-full object-cover" alt="Frappé Oreo">
+                    </div>
+                </div>
+                <div class="w-1/2 flex flex-col items-start gap-3">
+                    <span class="price-bubble" style="background:#8B4513;">$14,000</span>
+                    <span class="product-label text-xl">FRAPPÉS GOURMET</span>
+                    <p class="text-white text-xs font-bold uppercase tracking-tighter opacity-80">CAFÉ • OREO • FRESA
+                    </p>
+                </div>
+            </div>
+
+            <!-- GRANIZADOS -->
+            <div class="relative mt-4">
+                <div class="grid grid-cols-4 gap-2 floating relative">
+                    <div class="image-collage h-56">
+                        <img src="Image/granizado_maracuya.jpeg" class="w-full h-full object-cover"
+                            alt="Granizado Maracuyá">
+                    </div>
+                    <div class="image-collage h-56">
+                        <img src="Image/granizado_coco.jpeg" class="w-full h-full object-cover" alt="Granizado Coco">
+                    </div>
+                    <div class="image-collage h-56 relative">
+                        <img src="Image/Maracumango.jpeg" class="w-full h-full object-cover" alt="Maracumango">
+                        <div class="absolute top-1 left-1 z-20 scale-75 origin-top-left">
+                            <span class="product-label shadow-sm">MARACUMANGO</span>
+                        </div>
+                    </div>
+                    <div class="image-collage h-56">
+                        <img src="Image/Granizado_cafe.jpeg" class="w-full h-full object-cover" alt="Granizado Café">
+                    </div>
+                </div>
+                <div class="mt-4 text-center">
+                    <span class="product-label text-2xl px-8">GRANIZADOS PREMIUM</span>
+                    <p class="text-white text-xs font-black mt-2 uppercase tracking-widest italic drop-shadow-lg">
+                        MARACUYÁ • COCO • MARACUMANGO • CAFÉ</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- FOOTER -->
+        <div class="w-full py-12 px-8 text-center bg-blue-700 z-20 mt-auto">
+            <h2 class="text-white font-black text-5xl uppercase italic tracking-tighter leading-none mb-2 shadow-sm">El
+                Sabor que Quieres</h2>
+            <p class="text-blue-100 text-lg font-bold uppercase tracking-[0.3em] opacity-90">¡Prueba los Nuestros!</p>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

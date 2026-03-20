@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banner Publicitario - Bebidas Calientes FINAL FIX</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Outfit:wght@400;700;900&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --coffee-dark: #2C1810;
+            --coffee-gold: #C08E5F;
+            --baileys-gold: #F0A500;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: #f0f0f0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .banner-canvas {
+            width: 700px;
+            height: 1500px;
+            background: linear-gradient(135deg, #1a0f0a 0%, #3d2b1f 100%);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6);
+            border: 4px solid #4a3427;
+        }
+
+        .background-pattern {
+            position: absolute;
+            inset: 0;
+            background-image: url('file:///C:/Users/USUARIO/.gemini/antigravity/brain/9f6c9b73-1e2d-4f9a-8635-476bc3340ed3/luxury_coffee_beans_steam_background_1772633681984.png');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.25;
+            filter: brightness(50%);
+            pointer-events: none;
+        }
+
+        .text-outlined {
+            font-family: 'Luckiest Guy', cursive;
+            -webkit-text-stroke: 10px white;
+            paint-order: stroke fill;
+            text-shadow: 4px 6px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .subtitle-outlined {
+            font-family: 'Luckiest Guy', cursive;
+            -webkit-text-stroke: 6px white;
+            paint-order: stroke fill;
+            text-shadow: 3px 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .price-bubble {
+            background: #FF6B00;
+            color: white;
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-weight: 900;
+            font-size: 1.8rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+            border: 3px solid white;
+            transform: rotate(-3deg);
+        }
+
+        .product-label {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-weight: 900;
+            color: var(--coffee-dark);
+            text-transform: uppercase;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            font-size: 0.95rem;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .floating {
+            animation: float 5s ease-in-out infinite;
+        }
+
+        .floating-delayed {
+            animation: float 4s ease-in-out 1.5s infinite;
+        }
+
+        .image-container {
+            border: 5px solid white;
+            border-radius: 50px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+
+<body class="p-4">
+
+    <div class="banner-canvas flex flex-col items-center">
+        <div class="background-pattern"></div>
+
+        <!-- HEADER -->
+        <div class="w-full pt-12 pb-8 px-6 text-center bg-black/60 backdrop-blur-xl border-b-4 border-white/10 z-20">
+            <h2 class="subtitle-outlined text-4xl text-baileys-gold uppercase italic mb-2 tracking-widest">AROMA & SABOR
+            </h2>
+            <h1 class="text-outlined text-[5.5rem] text-white leading-[0.85] tracking-tight uppercase">MOMENTO <br>
+                CALIENTITO</h1>
+        </div>
+
+        <!-- CONTENT -->
+        <div class="w-full flex-grow relative z-10 px-8 py-8 flex flex-col gap-8">
+
+            <!-- CLASSICS -->
+            <div class="flex items-center gap-6 relative">
+                <div class="w-1/2 floating image-container h-48">
+                    <img src="file:///C:/Users/USUARIO/.gemini/antigravity/brain/9f6c9b73-1e2d-4f9a-8635-476bc3340ed3/premium_espresso_shot_crema_1772633698505.png"
+                        class="h-full w-full object-cover" alt="Espresso">
+                </div>
+                <div class="w-1/2 flex flex-col gap-4">
+                    <div class="flex flex-col items-end gap-1">
+                        <span class="price-bubble">$3,000</span>
+                        <span class="product-label">CAFE AMERICANO</span>
+                    </div>
+                    <div class="flex flex-col items-end gap-1">
+                        <span class="price-bubble" style="background: #5d3a24;">$4,000</span>
+                        <span class="product-label">CAFE EXPRESO</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CAPUCHINOS MINI GRID -->
+            <div class="flex gap-4 relative">
+                <div class="w-1/2 flex flex-col h-full gap-2">
+                    <div class="image-container h-48 floating-delayed">
+                        <!-- CORRECTED VAINILLA IMAGE PATH -->
+                        <img src="file:///C:/Users/USUARIO/.gemini/antigravity/brain/9f6c9b73-1e2d-4f9a-8635-476bc3340ed3/vanilla_cappuccino_beans_flower_luxury_1772641014751.png"
+                            class="h-full w-full object-cover" alt="Vainilla">
+                        <div class="absolute bottom-2 left-2 product-label text-[0.7rem]">VAINILLA</div>
+                    </div>
+                    <div class="text-center mt-1">
+                        <span class="price-bubble text-[1.2rem] py-1 px-4"
+                            style="background: #E3B778; color: #1a0f0a;">$7,500</span>
+                    </div>
+                </div>
+                <div class="w-1/2 flex flex-col h-full gap-2">
+                    <div class="image-container h-48 floating">
+                        <img src="file:///C:/Users/USUARIO/.gemini/antigravity/brain/9f6c9b73-1e2d-4f9a-8635-476bc3340ed3/cappuccino_latte_art_professional_1772586568031.png"
+                            class="h-full w-full object-cover" alt="Tradicional">
+                        <div class="absolute bottom-2 left-2 product-label text-[0.7rem]">TRADICIONAL</div>
+                    </div>
+                    <div class="text-center mt-1">
+                        <span class="price-bubble text-[1.2rem] py-1 px-4">$6,000</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- THE STAR: CAPUCHINO BAILEYS -->
+            <div class="w-full flex flex-col gap-4 mt-2">
+                <h3 class="subtitle-outlined text-5xl text-white leading-none uppercase text-center italic">CAPUCHINO
+                    <span class="text-baileys-gold">BAILEY'S</span>
+                </h3>
+
+                <div class="image-container h-[420px] w-full relative group">
+                    <img src="Image/Capuchino.jpeg" class=" w-full h-full object-cover" alt="Baileys">
+
+                    <div class="absolute top-6 right-6">
+                        <span class="price-bubble text-[2.5rem] py-4 px-10 shadow-2xl"
+                            style="background: var(--baileys-gold); color: black;">$9,500</span>
+                    </div>
+
+                    <div
+                        class="absolute bottom-6 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-md px-8 py-2 rounded-full border border-white/20">
+                        <span class="text-white text-xs font-black tracking-[0.3em] uppercase">Sabor Único • con toque
+                            de
+                            Baileys</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- FOOTER -->
+        <div class="w-full py-10 px-8 text-center bg-zinc-950 z-20 mt-auto border-t-2 border-white/10">
+            <h2 class="text-baileys-gold font-black text-4xl uppercase italic tracking-tighter leading-none mb-2">Pasión
+                en cada Taza</h2>
+            <p class="text-white/40 text-sm font-bold uppercase tracking-[0.2em]">Calidad Artesanal • Te Esperamos</p>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
