@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Menú Café El Arca - Estilo Industrial</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #121212;
+            --bg-card: #1e1e1e;
+            --accent: #d4a373;
+            /* Tono Cobre / Madera */
+            --text-light: #f5f5f5;
+            --text-muted: #a0a0a0;
+            --border: #333;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: #2c2c2c;
+            font-family: 'Lora', serif;
+            color: var(--text-light);
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            /* Reducido para móviles */
+            scroll-behavior: smooth;
+        }
+
+        /* Contenedor Principal del Menú */
+        .menu-container {
+            width: 100%;
+            max-width: 900px;
+            background-color: var(--bg-dark);
+            display: flex;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            min-height: 100vh;
+            /* Cambiado de fijo a dinámico */
+            animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Animación de entrada */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.98);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Barra Lateral Izquierda (Branding) */
+        .sidebar {
+            width: 30%;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=80&w=800');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 60px 20px;
+            text-align: center;
+            border-right: 1px solid var(--border);
+            filter: brightness(1.1);
+            /* Mejora de brillo general */
+        }
+
+        .sidebar-logo h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(3rem, 10vw, 5rem);
+            /* Tamaño fluido para móviles */
+            line-height: 0.9;
+            color: #FFB366;
+            /* Cobre más vibrante */
+            text-transform: uppercase;
+            text-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .sidebar-logo p {
+            font-family: 'Oswald', sans-serif;
+            letter-spacing: 4px;
+            font-size: 0.9rem;
+            margin-top: 20px;
+            color: #fff;
+            background: rgba(255, 179, 102, 0.1);
+            padding: 5px 15px;
+            display: inline-block;
+        }
+
+        .sidebar-footer {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Contenido del Menú */
+        .main-content {
+            width: 70%;
+            padding: 60px;
+            background-color: var(--bg-card);
+        }
+
+        .section-title {
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            color: var(--accent);
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 1px solid rgba(212, 163, 115, 0.2);
+            padding-bottom: 10px;
+        }
+
+        .menu-category {
+            margin-bottom: 50px;
+        }
+
+        /* Items del Menú con Animaciones */
+        .item {
+            margin-bottom: 25px;
+            position: relative;
+            padding: 10px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .item:hover {
+            background-color: rgba(255, 255, 255, 0.03);
+            transform: translateX(5px);
+        }
+
+        .item:active {
+            transform: scale(0.98);
+            /* Feedback táctil para celulares */
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            font-weight: 700;
+            font-size: 1.15rem;
+        }
+
+        .item-name {
+            color: #fff;
+        }
+
+        .item-price {
+            color: #FFB366;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .item-description {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-top: 6px;
+            line-height: 1.4;
+        }
+
+        .badge {
+            background: var(--accent);
+            color: #000;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.65rem;
+            padding: 2px 6px;
+            border-radius: 2px;
+            text-transform: uppercase;
+            margin-left: 8px;
+            vertical-align: middle;
+            font-weight: 700;
+        }
+
+        /* Grid para Jugos / Tabla */
+        .jugos-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+            font-size: 0.95rem;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .grid-header {
+            color: var(--accent);
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            border-bottom: 1px solid var(--accent);
+            padding-bottom: 8px;
+            font-weight: 700;
+        }
+
+        /* Footer / Contacto */
+        .contact-box {
+            margin-top: 40px;
+            padding: 30px;
+            border: 1px dashed #444;
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+        }
+
+        .contact-box p {
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .contact-box p:hover {
+            color: var(--accent);
+        }
+
+        .contact-box i {
+            color: var(--accent);
+            margin-right: 10px;
+            width: 20px;
+        }
+
+        /* Responsive para iPhone y Samsung */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .menu-container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                min-height: 350px;
+                padding: 40px 20px;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .sidebar-logo h1 {
+                font-size: 4rem;
+            }
+
+            .main-content {
+                width: 100%;
+                padding: 30px 20px;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .item-header {
+                font-size: 1.1rem;
+            }
+
+            .jugos-grid {
+                grid-template-columns: 1.5fr 1fr 1fr;
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Animación suave para badges */
+        .badge {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="menu-container">
+        <!-- BARRA LATERAL -->
+        <div class="sidebar">
+            <div class="sidebar-logo">
+                <h1>EL<br>ARCA DE NOÉ</h1>
+                <div style="width: 50px; height: 3px; background: var(--accent); margin: 25px auto;"></div>
+                <p>COFFEE & ROASTERS</p>
+            </div>
+            <div class="sidebar-footer">
+                <p style="letter-spacing: 2px; margin-bottom: 5px;">CALIDAD DESDE EL ORIGEN</p>
+                <p>© 2026</p>
+            </div>
+        </div>
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <div class="main-content">
+
+            <!-- SECCIÓN: CAFÉ CALIENTE -->
+            <div class="menu-category">
+                <h2 class="section-title"><i class="fas fa-mug-hot" style="margin-right: 15px;"></i>Barra de Café</h2>
+
+                <div class="item">
+                    <div class="item-header"><span class="item-name">Café americano <span
+                                class="badge">Popular</span></span><span class="item-price">$3.000</span></div>
+                    <div class="item-description">Café americano elaborado con granos de café tamareño tostión media.
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-header"><span class="item-name">Café Espresso doble <span
+                                class="badge">Prime</span></span><span class="item-price">$4.500</span></div>
+                    <div class="item-description">Café Espresso con granos de café tamareño tostión media.</div>
+                </div>
+
+                <div class="item">
+                    <div class="item-header"><span class="item-name">Café del Arca <span class="badge">Especial
+                                Prime</span></span><span class="item-price">$5.500</span></div>
+                    <div class="item-description">Café americano con shot de Whisky Jack Daniels con sabor canela.</div>
+                </div>
+
+                <div class="item">
+                    <div class="item-header"><span class="item-name">Capuchino Especial</span><span
+                            class="item-price">$6.500</span></div>
+                    <div class="item-description">Espresso con leche cremosa y un toque de arte latte.</div>
+                </div>
+
+                <div class="item">
+                    <div class="item-header"><span class="item-name">Capuchino Vainilla</span><span
+                            class="item-price">$7.500</span></div>
+                    <div class="item-description">Espresso con leche cremosa y un toque de arte latte con sabor a
+                        vainilla.</div>
+                </div>
+
+                <div class="item">
+                    <div class="item-header"><span class="item-name">Capuchino Baileys <span
+                                class="badge">Especial</span></span><span class="item-price">$9.500</span></div>
+                    <div class="item-description">Espresso con leche cremosa y un toque de arte latte con shot de crema
+                        de Whisky Baileys.</div>
+                </div>
+
+                <div class="item">
+                    <div class="item-header"><span class="item-name">Café con leche</span><span
+                            class="item-price">$4.000</span></div>
+                    <div class="item-description">Espresso doble con leche.</div>
+                </div>
+
+                <div class="item">
+                    <div class="item-header"><span class="item-name">Café latte</span><span
+                            class="item-price">$4.000</span></div>
+                    <div class="item-description">Café latte con cubos de hielo, leche cremada.</div>
+                </div>
+
+                <div class="item">
+                    <div class="item-header"><span class="item-name">Moca / Mochiatto</span><span
+                            class="item-price">$8.500</span></div>
+                    <div class="item-description">La mezcla perfecta entre chocolate y café.</div>
+                </div>
+
+                <div class="item">
+                    <div class="item-header"><span class="item-name">Milo CALIENTE</span><span
+                            class="item-price">$7.000</span></div>
+                    <div class="item-description">Deliciosa taza de Milo con leche.</div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN: FRÍOS Y FRAPPÉS -->
+            <div class="menu-category">
+                <h2 class="section-title"><i class="fas fa-ice-cream" style="margin-right: 15px;"></i> Fríos & Frappés
+                </h2>
+
+                <div class="item">
+                    <div class="item-header"><span class="item-name">Granizado de Maracuyá <span
+                                class="badge">TOP</span></span><span class="item-price">$10.000</span></div>
+                    <div class="item-description">Granizado natural con leche condensada, tajín y melado de Maracuyá.
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-header"><span class="item-name">Granizado de Maracumango <span
+                                class="badge">TOP</span></span><span class="item-price">$14.000</span></div>
+                    <div class="item-description">Mezcla de Mango y Maracuyá con leche condensada, tajín y trocitos de
+                        fruta.</div>
+                </div>
+
+                <div class="item">
+                    <div class="item-header"><span class="item-name">Granizado de Mango <span
+                                class="badge">Fresco</span></span><span class="item-price">$10.000</span></div>
+                    <div class="item-description">Mango natural con leche condensada, tajín y trocitos de mango.</div>
+                </div>
+
+                <div class="item">
+                    <div class="item-header"><span class="item-name">Granizado de café</span><span
+                            class="item-price">$10.000</span></div>
+                    <div class="item-description">Mezcla refrescante de hielo, café, chocolate y leche condensada.</div>
+                </div>
+
+                <div class="item">
+                    <div class="item-header"><span class="item-name">Granizado de Coco</span><span
+                            class="item-price">$12.000</span></div>
+                    <div class="item-description">Granizado con trocitos de coco y leche condensada.</div>
+                </div>
+
+                <div class="item">
+                    <div class="item-header"><span class="item-name">Granizado de Milo</span><span
+                            class="item-price">$11.000</span></div>
+                    <div class="item-description">Granizado de hielo, acompañado con milo y leche.</div>
+                </div>
+
+                <div class="item">
+                    <div class="item-header"><span class="item-name">Frappé de Café</span><span
+                            class="item-price">$12.000</span></div>
+                    <div class="item-description">Café frappé decorado con chocolate y crema.</div>
+                </div>
+
+                <div class="item">
+                    <div class="item-header"><span class="item-name">Frappé de Oreo <span
+                                class="badge">Prime</span></span><span class="item-price">$12.000</span></div>
+                    <div class="item-description">Trozos de galleta Oreo con crema batida.</div>
+                </div>
+
+                <div class="item">
+                    <div class="item-header"><span class="item-name">Frappé de Fresa <span
+                                class="badge">Prime</span></span><span class="item-price">$12.000</span></div>
+                    <div class="item-description">Fresa natural con crema batida.</div>
+                </div>
+
+                <div class="item">
+                    <div class="item-header"><span class="item-name">Cítrica de limón en agua</span><span
+                            class="item-price">$7.000</span></div>
+                    <div class="item-description">Refrescante limonada cítrica con hielo y limón.</div>
+                </div>
+
+                <div class="item">
+                    <div class="item-header"><span class="item-name">Cítrica en soda o ginger <span
+                                class="badge">TOP</span></span><span class="item-price">$8.500</span></div>
+                    <div class="item-description">Limonada cítrica en burbujeante soda con hielo.</div>
+                </div>
+
+                <div class="item">
+                    <div class="item-header"><span class="item-name">Limonada Cerezada <span
+                                class="badge">TOP</span></span><span class="item-price">$9.000</span></div>
+                    <div class="item-description">La combinación perfecta de limón y cerezas.</div>
+                </div>
+
+                <div class="item">
+                    <div class="item-header"><span class="item-name">Milo frío</span><span
+                            class="item-price">$8.000</span></div>
+                    <div class="item-description">Vaso de milo frío refrescante.</div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN: PASTELERIA -->
+            <div class="menu-category">
+                <h2 class="section-title"><i class="fas fa-cake-candles" style="margin-right: 15px;"></i>Pastelería</h2>
+
+                <div class="item">
+                    <div class="item-header"><span class="item-name">Postres de Maracuyá <span
+                                class="badge">Especial</span></span><span class="item-price">$6.000</span></div>
+                    <div class="item-description">Elaborados con extracto puro de maracuyá de la región.</div>
+                </div>
+
+                <div class="item">
+                    <div class="item-header"><span class="item-name">Postres de Oreo</span><span
+                            class="item-price">$6.000</span></div>
+                    <div class="item-description">Postre suave elaborado con leche y trozos de Oreo.</div>
+                </div>
+
+                <div class="item">
+                    <div class="item-header"><span class="item-name">Gelatina Mosaico <span
+                                class="badge">Clásico</span></span><span class="item-price">$5.000</span></div>
+                    <div class="item-description">Vasito de gelatina multicolor con leche condensada.</div>
+                </div>
+
+                <div class="item">
+                    <div class="item-header"><span class="item-name">Torta de la Casa</span><span
+                            class="item-price">$4.500</span></div>
+                    <div class="item-description">Porción del día (Pregunta por el sabor de hoy).</div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN: JUGOS -->
+            <div class="menu-category">
+                <h2 class="section-title"><i class="fas fa-glass-water" style="margin-right: 15px;"></i>Jugos Naturales
+                </h2>
+                <div class="jugos-grid">
+                    <div class="grid-header">Fruta</div>
+                    <div class="grid-header">Agua</div>
+                    <div class="grid-header">Leche</div>
+
+                    <div>Fresa / Mora / Lulo</div>
+                    <div>$7.000</div>
+                    <div>$8.500</div>
+                    <div>Mango / Maracuyá</div>
+                    <div>$7.000</div>
+                    <div>$8.500</div>
+                    <div>Frutos Rojos</div>
+                    <div>$7.000</div>
+                    <div>$8.500</div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN: SNACKS -->
+            <div class="menu-category">
+                <h2 class="section-title"><i class="fas fa-utensils" style="margin-right: 15px;"></i>Para Acompañar</h2>
+
+                <div class="item">
+                    <div class="item-header"><span class="item-name">Empanadas de Carne</span><span
+                            class="item-price">$3.000</span></div>
+                    <div class="item-description">Rellenas de carne y papa, horneadas a la perfección.</div>
+                </div>
+
+                <div class="item">
+                    <div class="item-header"><span class="item-name">Empanadas Pollo</span><span
+                            class="item-price">$3.000</span></div>
+                    <div class="item-description">Deliciosas empanadas rellenas de pollo y papa.</div>
+                </div>
+
+                <div class="item">
+                    <div class="item-header"><span class="item-name">Mantecadas</span><span
+                            class="item-price">$3.000</span></div>
+                    <div class="item-description">Porción suave con un toque de arequipe.</div>
+                </div>
+
+                <div class="item-card-last" style="padding: 10px;">
+                    <div class="item-header"><span class="item-name">Galletas de Avena</span><span
+                            class="item-price">$3.000</span></div>
+                    <div class="item-description">Nutritivas y crujientes galletas de avena.</div>
+                </div>
+
+            </div>
+
+            <!-- CONTACTO -->
+            <div class="contact-box">
+                <p><i class="fa-brands fa-instagram"></i> @rcadenoe_colombia</p>
+                <p><i class="fa-solid fa-envelope"></i> cafeteria.terrazadenoe@gmail.com</p>
+                <p style="margin-top: 15px; font-weight: 700; color: var(--accent);"><i
+                        class="fa-brands fa-whatsapp"></i> Pedidos: +57 3112331548</p>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>
