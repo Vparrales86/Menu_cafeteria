@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Minero AR 3D</title>
+    <title>Minero AR 3D - Puntos</title>
     <!-- Configuración para escalar correctamente en smartphones -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     
@@ -132,6 +132,7 @@
         mode = selectedMode;
         document.getElementById('auth-screen').style.display = 'none';
         document.getElementById('header').style.display = 'flex';
+        document.getElementById('score-display').innerText = `🎒: ${score} pts`;
         document.getElementById('loading-gps').style.display = 'block';
         
         document.getElementById('role-display').innerText = mode === 'admin' ? '👮‍♂️ Admin' : '🏃‍♂️ Jugador';
@@ -204,13 +205,23 @@
         addSphere(currentPos[0] + latOffset, currentPos[1]);
     }
 
+    const colorProfiles = [
+        { hex: '#3498db', points: 5, name: 'Azul' },
+        { hex: '#2ecc71', points: 3, name: 'Verde' },
+        { hex: '#f1c40f', points: 4, name: 'Amarilla' },
+        { hex: '#e74c3c', points: 10, name: 'Roja' }
+    ];
+
     function addSphere(lat, lng) {
         const id = 'sphere_' + Date.now();
-        // Colores exactos solicitados: azul, roja, naranja, verde
-        const colors = ['#3498db', '#e74c3c', '#e67e22', '#2ecc71'];
-        const color = colors[Math.floor(Math.random() * colors.length)];
+        const chosen = colorProfiles[Math.floor(Math.random() * colorProfiles.length)];
         
-        spheres.push({ id, lat, lng, taken: false, color });
+        spheres.push({ 
+            id, lat, lng, taken: false, 
+            color: chosen.hex, 
+            points: chosen.points, 
+            name: chosen.name 
+        });
         saveSpheres();
         renderSpheresAR();
     }
@@ -330,13 +341,15 @@
                 saveSpheres();
                 renderSpheresAR();
                 
-                score += 1;
+                const pts = sphereObj.points || 1;
+                const cName = sphereObj.name || 'Clásica';
+                score += pts;
                 localStorage.setItem('minero_ar_score', score);
-                document.getElementById('score-display').innerText = `🎒: ${score}`;
+                document.getElementById('score-display').innerText = `🎒: ${score} pts`;
                 targetSphereIndex = -1;
                 
                 document.getElementById('action-btn').style.display = 'none';
-                document.getElementById('status-text').innerHTML = '¡Obtenida! 🎉 Sigue explorando.';
+                document.getElementById('status-text').innerHTML = `¡Esfera ${cName} Obtenida! (+${pts} pts) 🎉`;
                 
             }, 450);
         }
