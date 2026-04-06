@@ -106,8 +106,18 @@
 
         <div id="admin-panel" class="pointer-events-auto">
             🛠 Modo Creador<br>
-            <small style="color: #555;">La esfera aparacerá justo enfrente tuyo.</small>
-            <button onclick="addSphereHere()" style="background:#00b09b; color:white; border:none; padding:10px; margin-top:10px; border-radius:5px; width:100%; font-weight: bold; cursor:pointer;">Lanzar Esfera Aquí</button>
+            <small style="color: #555;">Elige y lanza frente a ti:</small>
+            
+            <select id="sphere-selector" style="width: 100%; padding: 8px; margin-top: 10px; border-radius: 5px; border: 1px solid #ccc; font-weight: bold; color:#333;">
+                <option value="0">🔵 Azul (5 pts)</option>
+                <option value="1">🟢 Verde (3 pts)</option>
+                <option value="2">🟡 Amarilla (4 pts)</option>
+                <option value="3">🔴 Roja (10 pts)</option>
+                <option value="4">🟠 Naranja (8 pts)</option>
+                <option value="5">🟤 Marrón Espinas Fuego (30 pts)</option>
+            </select>
+
+            <button onclick="addSphereHere()" style="background:#00b09b; color:white; border:none; padding:10px; margin-top:10px; border-radius:5px; width:100%; font-weight: bold; cursor:pointer;">Lanzar Esfera Seleccionada</button>
             <button onclick="clearSpheres()" style="background:#e74c3c; color:white; border:none; padding:10px; margin-top:10px; border-radius:5px; width:100%; font-weight: bold; cursor:pointer;">Borrar Todo el Mundo</button>
         </div>
 
@@ -194,33 +204,40 @@
         return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
     }
 
+    const colorProfiles = [
+        { hex: '#3498db', points: 5, name: 'Azul', special: false },
+        { hex: '#2ecc71', points: 3, name: 'Verde', special: false },
+        { hex: '#f1c40f', points: 4, name: 'Amarilla', special: false },
+        { hex: '#e74c3c', points: 10, name: 'Roja', special: false },
+        { hex: '#e67e22', points: 8, name: 'Naranja', special: false },
+        { hex: '#633917', points: 30, name: 'Marrón Fuego', special: 'fire_spikes' }
+    ];
+
     window.addSphereHere = function() {
         if(!currentPos) {
             alert("Aún no se ha detectado tu GPS de forma precisa.");
             return;
         }
-        // Le sumamos a la latitud una ínfima cantidad (aprox 3 metros al norte)
-        // para que no quede encima de la cámara, sino que aparezca visible frente a ti.
         const latOffset = 0.00003; 
-        addSphere(currentPos[0] + latOffset, currentPos[1]);
+        const selector = document.getElementById('sphere-selector');
+        const selectedIndex = selector ? parseInt(selector.value) : 0;
+        
+        insertSphereData(currentPos[0] + latOffset, currentPos[1], colorProfiles[selectedIndex]);
     }
 
-    const colorProfiles = [
-        { hex: '#3498db', points: 5, name: 'Azul' },
-        { hex: '#2ecc71', points: 3, name: 'Verde' },
-        { hex: '#f1c40f', points: 4, name: 'Amarilla' },
-        { hex: '#e74c3c', points: 10, name: 'Roja' }
-    ];
-
     function addSphere(lat, lng) {
-        const id = 'sphere_' + Date.now();
         const chosen = colorProfiles[Math.floor(Math.random() * colorProfiles.length)];
-        
+        insertSphereData(lat, lng, chosen);
+    }
+
+    function insertSphereData(lat, lng, chosen) {
+        const id = 'sphere_' + Date.now();
         spheres.push({ 
             id, lat, lng, taken: false, 
             color: chosen.hex, 
             points: chosen.points, 
-            name: chosen.name 
+            name: chosen.name,
+            special: chosen.special || false
         });
         saveSpheres();
         renderSpheresAR();
@@ -265,6 +282,28 @@
                 sphere.setAttribute('color', s.color);
                 // Basic material to guarantee visibility across all devices without requiring external assets
                 sphere.setAttribute('material', 'opacity: 0.95; metalness: 0.1; roughness: 0.8');
+
+                // Generación de espinas de fuego si es la esfera especial marrón
+                if (s.special === 'fire_spikes') {
+                    const rotations = ['0 0 0', '90 0 0', '180 0 0', '270 0 0', '0 0 90', '0 0 -90', '45 45 0', '-45 -45 0', '-45 45 0'];
+                    rotations.forEach(rot => {
+                        const pivot = document.createElement('a-entity');
+                        pivot.setAttribute('rotation', rot);
+                        
+                        const cone = document.createElement('a-cone');
+                        cone.setAttribute('radius-bottom', '0.06');
+                        cone.setAttribute('height', '0.45');
+                        cone.setAttribute('position', '0 0.25 0'); // Sale hacia afuera desde el borde la esfera
+                        
+                        // Colores de llamas variando entre naranja rojizo y amarillo anaranjado
+                        const fireColor = Math.random() > 0.5 ? '#ff4500' : '#ffa500';
+                        cone.setAttribute('color', fireColor);
+                        cone.setAttribute('material', 'opacity: 0.9; metalness: 0');
+                        
+                        pivot.appendChild(cone);
+                        sphere.appendChild(pivot);
+                    });
+                }
 
                 // Efecto 1: Giro permanente simulando estar "viva" / suspendida
                 sphere.setAttribute('animation__spin', 'property: rotation; to: 0 360 0; loop: true; dur: 3500; easing: linear');
