@@ -216,10 +216,14 @@
     }
 
     function generateTestSpheres(lat, lng) {
-        for(let i=0; i<5; i++) {
+        // En lugar de aleatorio 360 grados, vamos a forzar al menos 2 esferas MUY cerca (1 metro y 3 metros)
+        // para estar 100% seguros de que están dentro del campo de visión corto.
+        addSphere(lat + (1 / 111320), lng); // 1 metro exactamente al norte
+        addSphere(lat, lng + (3 / 111320)); // 3 metros al este
+        
+        for(let i=0; i<3; i++) {
             const angle = Math.random() * Math.PI * 2;
-            // Reducimos radicalmente la distancia a 2-5 metros para que aparezcan justo enfrente y sean imposibles de no ver
-            const radius = (Math.random() * 3) + 2;
+            const radius = (Math.random() * 5) + 3;
             const dLat = (radius * Math.cos(angle)) / 111320;
             const dLng = (radius * Math.sin(angle)) / (111320 * Math.cos(lat * Math.PI / 180));
             addSphere(lat + dLat, lng + dLng);
@@ -249,7 +253,8 @@
                 // Altura fijada a nivel de los ojos aprox para que floten visiblemente.
                 sphere.setAttribute('position', '0 2 0'); 
                 sphere.setAttribute('color', s.color);
-                sphere.setAttribute('material', 'opacity: 0.9; metalness: 0.5; roughness: 0.2; sphericalEnvMap: #sky;');
+                // Basic material to guarantee visibility across all devices without requiring external assets
+                sphere.setAttribute('material', 'opacity: 0.95; metalness: 0.1; roughness: 0.8');
 
                 // Efecto 1: Giro permanente simulando estar "viva" / suspendida
                 sphere.setAttribute('animation__spin', 'property: rotation; to: 0 360 0; loop: true; dur: 3500; easing: linear');
