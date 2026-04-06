@@ -206,8 +206,8 @@
 
     function addSphere(lat, lng) {
         const id = 'sphere_' + Date.now();
-        // Colores aleatorios vibrantes
-        const colors = ['#e74c3c', '#3498db', '#f1c40f', '#2ecc71', '#9b59b6'];
+        // Colores exactos solicitados: azul, roja, naranja, verde
+        const colors = ['#3498db', '#e74c3c', '#e67e22', '#2ecc71'];
         const color = colors[Math.floor(Math.random() * colors.length)];
         
         spheres.push({ id, lat, lng, taken: false, color });
@@ -218,7 +218,8 @@
     function generateTestSpheres(lat, lng) {
         for(let i=0; i<5; i++) {
             const angle = Math.random() * Math.PI * 2;
-            const radius = (Math.random() * 8) + 4; // Entre 4 y 12 metros a la redonda
+            // Reducimos radicalmente la distancia a 2-5 metros para que aparezcan justo enfrente y sean imposibles de no ver
+            const radius = (Math.random() * 3) + 2;
             const dLat = (radius * Math.cos(angle)) / 111320;
             const dLng = (radius * Math.sin(angle)) / (111320 * Math.cos(lat * Math.PI / 180));
             addSphere(lat + dLat, lng + dLng);
@@ -241,11 +242,12 @@
                 entity.setAttribute('id', s.id);
                 
                 // ESFERA 3D SUSPENDIDA
-                // radius: pedido de ~10cm => 0.1, le pongo 0.2 (20cm) para que destaque bien en la calle.
-                // position: "0 1 0" => La sube exactamente 1 metro por encima del suelo (relativo al GPS).
+                // Hacemos el radio gigante (1.0 metro) porque en espacios exteriores el GPS es engañoso 
+                // y si son pequeñas se vuelven invisibles a la cámara.
                 const sphere = document.createElement('a-sphere');
-                sphere.setAttribute('radius', '0.2'); 
-                sphere.setAttribute('position', '0 1 0'); 
+                sphere.setAttribute('radius', '1.0'); 
+                // Altura fijada a nivel de los ojos aprox para que floten visiblemente.
+                sphere.setAttribute('position', '0 2 0'); 
                 sphere.setAttribute('color', s.color);
                 sphere.setAttribute('material', 'opacity: 0.9; metalness: 0.5; roughness: 0.2; sphericalEnvMap: #sky;');
 
